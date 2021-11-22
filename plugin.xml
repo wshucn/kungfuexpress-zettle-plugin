@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-izettle"
+        version="1.0.0"
+        xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>iZettle</name>
+    <description>Cordova iZettle Plugin</description>
+
+    <js-module name="izettle" src="www/izettle.js">
+        <clobbers target="iZettle"/>
+    </js-module>
+
+    <!-- Android -->
+    <!-- Android goes here -->
+
+    <!-- iOS -->
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="izettle">
+                <param name="onload" value="true"/>
+                <param name="ios-package" value="iZettle"/>
+            </feature>
+        </config-file>
+
+        <config-file parent="UISupportedExternalAccessoryProtocols" target="*-Info.plist">
+            <array>
+                <string>com.izettle.cardreader-one</string>
+            </array>
+        </config-file>
+
+        <config-file parent="NSLocationWhenInUseUsageDescription" target="*-Info.plist">
+            <string>You need to allow this to be able to accept card payments</string>
+        </config-file>
+
+        <config-file parent="UIBackgroundModes" target="*-Info.plist">
+            <array>
+                <string>bluetooth-central</string>
+                <string>external-accessory</string>
+            </array>
+        </config-file>
+
+        <config-file parent="NSBluetoothAlwaysUsageDescription" target="*-Info.plist">
+            <string>Our app uses bluetooth to find, connect and transfer data with Zettle card reader devices.</string>
+        </config-file>
+
+        <config-file parent="NSBluetoothPeripheralUsageDescription" target="*-Info.plist">
+            <string>Our app uses bluetooth to find, connect and transfer data with Zettle card reader devices.</string>
+        </config-file>
+
+        <config-file parent="CFBundleURLTypes" target="*-Info.plist">
+            <array>
+                <dict>
+                    <key>CFBundleTypeRole</key>
+                    <string>Editor</string>
+                    <key>CFBundleURLSchemes</key>
+                    <array>
+                        <string>kungfuexpress://login.callback</string>
+                    </array>
+                </dict>
+            </array>
+        </config-file>
+
+        <framework src="iZettleSDK" type="podspec" spec="~> 3.3"/>
+
+        <header-file src="src/ios/iZettle.h"/>
+        <source-file src="src/ios/iZettle.m"/>
+
+    </platform>
+</plugin>
