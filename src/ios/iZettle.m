@@ -65,23 +65,7 @@
 
         CDVPluginResult* pluginResult;
         if(paymentInfo != nil) {
-            NSDictionary *dic = @{
-                    @"amount": paymentInfo.amount,
-                    @"gratuityAmount": [NSString stringWithFormat:@"%.2f", [paymentInfo.gratuityAmount doubleValue]],
-                    @"referenceNumber": paymentInfo.referenceNumber,
-                    @"entryMode": paymentInfo.entryMode,
-                    @"obfuscatedPan": paymentInfo.obfuscatedPan,
-                    @"panHash": paymentInfo.panHash,
-                    @"cardBrand": paymentInfo.cardBrand,
-                    @"authorizationCode":paymentInfo.authorizationCode,
-                    @"AID": paymentInfo.AID,
-                    @"TSI": paymentInfo.TSI,
-                    @"TVR": paymentInfo.TVR,
-                    @"applicationName": paymentInfo.applicationName,
-                    @"numberOfInstallments": paymentInfo.numberOfInstallments,
-                    @"installmentAmount": paymentInfo.installmentAmount
-                };
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dic];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:paymentInfo.dictionary];
         } else {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.localizedDescription];
         }
@@ -101,23 +85,7 @@
 
         CDVPluginResult* pluginResult;
         if(paymentInfo != nil) {
-            NSDictionary *dic = @{
-                    @"amount": paymentInfo.amount,
-                    @"gratuityAmount": [NSString stringWithFormat:@"%.2f", [paymentInfo.gratuityAmount doubleValue]],
-                    @"referenceNumber": paymentInfo.referenceNumber,
-                    @"entryMode": paymentInfo.entryMode,
-                    @"obfuscatedPan": paymentInfo.obfuscatedPan,
-                    @"panHash": paymentInfo.panHash,
-                    @"cardBrand": paymentInfo.cardBrand,
-                    @"authorizationCode":paymentInfo.authorizationCode,
-                    @"AID": paymentInfo.AID,
-                    @"TSI": paymentInfo.TSI,
-                    @"TVR": paymentInfo.TVR,
-                    @"applicationName": paymentInfo.applicationName,
-                    @"numberOfInstallments": paymentInfo.numberOfInstallments,
-                    @"installmentAmount": paymentInfo.installmentAmount
-                };
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dic];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:paymentInfo.dictionary];
         } else {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.localizedDescription];
         }
@@ -132,23 +100,7 @@
 
         CDVPluginResult* pluginResult;
         if(paymentInfo != nil) {
-            NSDictionary *dic = @{
-                    @"amount": paymentInfo.amount,
-                    @"gratuityAmount": [NSString stringWithFormat:@"%.2f", [paymentInfo.gratuityAmount doubleValue]],
-                    @"referenceNumber": paymentInfo.referenceNumber,
-                    @"entryMode": paymentInfo.entryMode,
-                    @"obfuscatedPan": paymentInfo.obfuscatedPan,
-                    @"panHash": paymentInfo.panHash,
-                    @"cardBrand": paymentInfo.cardBrand,
-                    @"authorizationCode":paymentInfo.authorizationCode,
-                    @"AID": paymentInfo.AID,
-                    @"TSI": paymentInfo.TSI,
-                    @"TVR": paymentInfo.TVR,
-                    @"applicationName": paymentInfo.applicationName,
-                    @"numberOfInstallments": paymentInfo.numberOfInstallments,
-                    @"installmentAmount": paymentInfo.installmentAmount
-                };
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dic];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:paymentInfo.dictionary];
         } else {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.localizedDescription];
         }
