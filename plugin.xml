@@ -54,13 +54,20 @@
                     <string>Editor</string>
                     <key>CFBundleURLSchemes</key>
                     <array>
-                        <string>kungfuexpress://login.callback</string>
+                        <string>kungfuexpress</string>
                     </array>
                 </dict>
             </array>
         </config-file>
 
-        <framework src="iZettleSDK" type="podspec" spec="~> 3.3"/>
+        <podspec>
+            <config>
+                <source url="https://github.com/CocoaPods/Specs.git"/>
+            </config>
+            <pods>
+                <pod name="iZettleSDK" spec="~> 3.3"/>
+            </pods>
+        </podspec>
 
         <header-file src="src/ios/iZettle.h"/>
         <source-file src="src/ios/iZettle.m"/>

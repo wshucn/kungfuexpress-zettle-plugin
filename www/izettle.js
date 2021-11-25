@@ -1,36 +1,44 @@
-function iZettle() {}
+var execAsPromise = function (command, args) {
+  if (args === void 0) {
+    args = [];
+  }
+  return new Promise(function (resolve, reject) {
+    cordova.exec(resolve, reject, 'iZettle', command, args);
+  });
+};
 
-var PLUGIN_NAME = "iZettle";
+function iZettle() {
+}
 
-iZettle.prototype.initialize = function (clientId, callbackURL, success, error) {
-  cordova.exec(success, error, PLUGIN_NAME, "initialize", [clientId, callbackURL]);
-  };
+iZettle.prototype.initialize = function (clientId, callbackURL) {
+  return execAsPromise('initialize', [clientId, callbackURL]);
+};
 
-  iZettle.prototype.charge = function (amount, reference, success, error) {
-    cordova.exec(success, error, PLUGIN_NAME, "charge", [amount, reference]);
-  };
+iZettle.prototype.charge = function (amount, reference) {
+  return execAsPromise('charge', [amount, reference]);
+};
 
-iZettle.prototype.refund = function (amount, reference, refundReference, success, error) {
-  cordova.exec(success, error, PLUGIN_NAME, "refund", [amount, reference, refundReference]);
-  };
+iZettle.prototype.refund = function (amount, reference, refundReference) {
+  return execAsPromise('refund', [amount, reference, refundReference]);
+};
 
-iZettle.prototype.retrievePaymentInfo = function (reference, success, error) {
-  cordova.exec(success, error, PLUGIN_NAME, "retrievePaymentInfo", [reference]);
-  };
+iZettle.prototype.retrievePaymentInfo = function (reference) {
+  return execAsPromise('retrievePaymentInfo', [reference]);
+};
 
-iZettle.prototype.presentSettings = function (success, error) {
-  cordova.exec(success, error, PLUGIN_NAME, "presentSettings", null);
-  };
+iZettle.prototype.presentSettings = function () {
+  return execAsPromise('presentSettings');
+};
 
-iZettle.prototype.enforceAccount = function (email, clientId, callbackURL, success, error) {
-  cordova.exec(success, error, PLUGIN_NAME, "enforceAccount", [email, clientId, callbackURL]);
-  };
+iZettle.prototype.enforceAccount = function (email, clientId, callbackURL) {
+  return execAsPromise('enforceAccount', [email, clientId, callbackURL]);
+};
 
-iZettle.prototype.logout = function (success, error) {
-  cordova.exec(success, error, PLUGIN_NAME, "logout", null);
-  };
+iZettle.prototype.logout = function () {
+  return execAsPromise('logout');
+};
 
-iZettle.install = function() {
+iZettle.install = function () {
   if (!window.plugins) {
     window.plugins = {};
   }
