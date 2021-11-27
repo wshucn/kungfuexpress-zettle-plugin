@@ -18,6 +18,7 @@
             </feature>
         </config-file>
 
+        <framework src="src/android/plugin.gradle" custom="true" type="gradleReference"/>
         <framework src="com.izettle.payments:android-sdk-ui:1.14.17" />
         <framework src="androidx.appcompat:appcompat:1.1.0" />
         <framework src="androidx.swiperefreshlayout:swiperefreshlayout:1.0.0" />
