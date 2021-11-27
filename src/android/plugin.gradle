@@ -3,7 +3,7 @@ repositories {
         url = uri("https://maven.pkg.github.com/iZettle/sdk-android")
         credentials(HttpHeaderCredentials) {
             name "Authorization"
-            value "Bearer ${iZettleSDK.githubAccessToken}"
+            value "Bearer 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"
         }
         authentication {
             header(HttpHeaderAuthentication)
