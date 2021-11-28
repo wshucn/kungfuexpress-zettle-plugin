@@ -1,17 +1,20 @@
-repositories {
-    maven {
-        url = uri("https://maven.pkg.github.com/iZettle/sdk-android")
-        credentials(HttpHeaderCredentials) {
-            name "Authorization"
-            value "Bearer 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"
-        }
-        authentication {
-            header(HttpHeaderAuthentication)
-        }
-    }
 
-    google()
-    jcenter()
+allprojects {
+    repositories {
+        maven {
+            url = uri("https://maven.pkg.github.com/iZettle/sdk-android")
+            credentials(HttpHeaderCredentials) {
+                name "Authorization"
+                value "Bearer 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"
+            }
+            authentication {
+                header(HttpHeaderAuthentication)
+            }
+        }
+
+        google()
+        jcenter()
+    }
 }
 
 android {
