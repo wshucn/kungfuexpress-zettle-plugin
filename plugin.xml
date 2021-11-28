@@ -15,6 +15,7 @@
         <config-file parent="/*" target="config.xml">
             <feature name="izettle" >
                 <param name="android-package" value="com.kungfuexpress.restaurant.user.ZettlePlugin"/>
+                <param name="onload" value="true"/>
             </feature>
         </config-file>
 
