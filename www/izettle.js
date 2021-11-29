@@ -3,6 +3,7 @@ var execAsPromise = function (command, args) {
     args = [];
   }
   return new Promise(function (resolve, reject) {
+    alert('exec ' + command + "|" + args);
     cordova.exec(resolve, reject, 'iZettle', command, args);
   });
 };
@@ -11,6 +12,7 @@ function iZettle() {
 }
 
 iZettle.prototype.initialize = function (clientId, callbackURL) {
+  alert('initialize ' + clientId + "|" + callbackURL);
   return execAsPromise('initialize', [clientId, callbackURL]);
 };
 
