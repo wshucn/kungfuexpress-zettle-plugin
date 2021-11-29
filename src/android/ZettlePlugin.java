@@ -109,7 +109,9 @@ public class ZettlePlugin extends CordovaPlugin {
 
 
     private void initIZettleSDK(String clientId, String callbackUrl) {
-        IZettleSDK.Instance.init(cordova.getActivity(), clientId, callbackUrl);
+        final String testClientId = "26ae8eed-6ad1-4be4-a2f2-61b066877efa";
+        final String testCallBack = "kungfu-express://login.callback";
+        IZettleSDK.Instance.init(cordova.getActivity(), testClientId, testCallBack);
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new SdkLifecycle(IZettleSDK.Instance));
     }
 
@@ -122,7 +124,6 @@ public class ZettlePlugin extends CordovaPlugin {
         TransactionReference reference = new TransactionReference.Builder(referenceId)
                 .put("PAYMENT_EXTRA_INFO", "Started from home screen")
                 .build();
-        // todo 配置activity
         Intent intent = new CardPaymentActivity.IntentBuilder(cordova.getActivity())
                 .amount(amount)
                 .reference(reference)
@@ -148,7 +149,6 @@ public class ZettlePlugin extends CordovaPlugin {
                 TransactionReference reference = new TransactionReference.Builder(refundRefId)
                         .put("REFUND_EXTRA_INFO", "Started from home screen")
                         .build();
-                // todo activity declare
                 Intent intent = new RefundsActivity.IntentBuilder(cordova.getActivity())
                         .refundAmount(amount)
                         .reference(reference)
