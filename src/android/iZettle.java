@@ -26,7 +26,7 @@ import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-public class ZettlePlugin extends CordovaPlugin {
+public class iZettle extends CordovaPlugin {
 
 //    private static final String githubAccessToken = "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";
 //    private static final String clientId = "26ae8eed-6ad1-4be4-a2f2-61b066877efa";
@@ -114,7 +114,7 @@ public class ZettlePlugin extends CordovaPlugin {
     }
 
     // todo double to long
-    public void charge(long amount, String referenceId) {
+    public void charge(double amount, String referenceId) {
         Log.d("stone", "charge");
         Log.d("stone", "amount is " + amount);
         Log.d("stone", "reference id  is " + referenceId);
@@ -126,18 +126,18 @@ public class ZettlePlugin extends CordovaPlugin {
                 .put("PAYMENT_EXTRA_INFO", "Started from home screen")
                 .build();
         Intent intent = new CardPaymentActivity.IntentBuilder(cordova.getActivity())
-                .amount(amount)
+                .amount(1L)
                 .reference(reference)
                 .enableTipping(enableTipping) // Only for markets with tipping support
                 .enableInstalments(enableInstallments) // Only for markets with installments support
                 .enableLogin(enableLogin) // Mandatory to set
                 .build();
-        cordova.setActivityResultCallback(ZettlePlugin.this);
+        cordova.setActivityResultCallback(iZettle.this);
         cordova.getActivity().startActivityForResult(intent, REQUEST_CODE_PAYMENT);
         lastPaymentTraceId.setValue(referenceId);
     }
 
-    public void refund(long amount, String refId, String refundRefId) {
+    public void refund(double amount, String refId, String refundRefId) {
         Log.d("stone", "refund");
         Log.d("stone", "amount is " + amount);
         Log.d("stone", "refId is " + refId);
@@ -155,16 +155,17 @@ public class ZettlePlugin extends CordovaPlugin {
                         .put("REFUND_EXTRA_INFO", "Started from home screen")
                         .build();
                 Intent intent = new RefundsActivity.IntentBuilder(cordova.getActivity())
-                        .refundAmount(amount)
+                        .refundAmount(1L)
                         .reference(reference)
                         .build();
-                cordova.setActivityResultCallback(ZettlePlugin.this);
+                cordova.setActivityResultCallback(iZettle.this);
                 cordova.getActivity().startActivityForResult(intent, REQUEST_CODE_REFUND);
             }
         });
     }
 
     public void presentSetting() {
+        // todo activity declare
         cordova.getActivity().startActivity(CardReadersActivity.newIntent(cordova.getContext()));
     }
 

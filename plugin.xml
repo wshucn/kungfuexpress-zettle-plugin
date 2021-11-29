@@ -13,8 +13,8 @@
     <!-- Android -->
     <platform name="android">
         <config-file parent="/*" target="config.xml">
-            <feature name="izettle" >
-                <param name="android-package" value="com.kungfuexpress.restaurant.user.ZettlePlugin"/>
+            <feature name="iZettle" >
+                <param name="android-package" value="com.kungfuexpress.restaurant.user.iZettle"/>
                 <param name="onload" value="true"/>
             </feature>
         </config-file>
@@ -28,7 +28,7 @@
 <!--        <framework src="androidx.multidex:multidex:2.0.1" />-->
 <!--        <framework src="androidx.lifecycle:lifecycle-process:2.2.0" />-->
 
-        <source-file src="src/android/ZettlePlugin.java" target-dir="src/com/kungfuexpress/restaurant/user" />
+        <source-file src="src/android/iZettle.java" target-dir="src/com/kungfuexpress/restaurant/user" />
     </platform>
     <!-- Android goes here -->
 
