@@ -1,6 +1,7 @@
 package com.kungfuexpress.restaurant.user;
 
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
@@ -54,6 +55,7 @@ public class ZettlePlugin extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        Log.d("stone", "execute function is " + action);
         this.callbackContext = callbackContext;
         switch (action) {
             case FUNCTION_INIT:
@@ -105,13 +107,17 @@ public class ZettlePlugin extends CordovaPlugin {
     }
 
 
-    private void initIZettleSDK(String clientId, String callbackUrl) {
+    public void initIZettleSDK(String clientId, String callbackUrl) {
+        Log.d("stone", "initIZettleSDK");
         IZettleSDK.Instance.init(cordova.getActivity(), clientId, callbackUrl);
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new SdkLifecycle(IZettleSDK.Instance));
     }
 
     // todo double to long
-    private void charge(long amount, String referenceId) {
+    public void charge(long amount, String referenceId) {
+        Log.d("stone", "charge");
+        Log.d("stone", "amount is " + amount);
+        Log.d("stone", "reference id  is " + referenceId);
         boolean enableTipping = false;
         boolean enableInstallments = false;
         boolean enableLogin = true;
@@ -131,7 +137,11 @@ public class ZettlePlugin extends CordovaPlugin {
         lastPaymentTraceId.setValue(referenceId);
     }
 
-    private void refund(long amount, String refId, String refundRefId) {
+    public void refund(long amount, String refId, String refundRefId) {
+        Log.d("stone", "refund");
+        Log.d("stone", "amount is " + amount);
+        Log.d("stone", "refId is " + refId);
+        Log.d("stone", "refundRefId is " + refundRefId);
         IZettleSDK.Instance.getRefundsManager().retrieveCardPayment(refId, new RefundsManager.Callback<CardPaymentPayload, RetrieveCardPaymentFailureReason>() {
 
             @Override
@@ -154,18 +164,19 @@ public class ZettlePlugin extends CordovaPlugin {
         });
     }
 
-    private void presentSetting() {
-        // todo activity declare
+    public void presentSetting() {
         cordova.getActivity().startActivity(CardReadersActivity.newIntent(cordova.getContext()));
     }
 
-    private void logout() {
+    public void logout() {
         IZettleSDK.Instance.getUser().logout();
     }
 
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("stone", "onActivityResult");
+        Log.d("stone", "onActivityResult requestCode is " + requestCode);
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_PAYMENT && data != null) {
             CardPaymentResult result = data.getParcelableExtra(CardPaymentActivity.RESULT_EXTRA_PAYLOAD);
