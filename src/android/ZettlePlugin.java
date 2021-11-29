@@ -50,9 +50,6 @@ public class ZettlePlugin extends CordovaPlugin {
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
-//        toLiveData(IZettleSDK.Instance.getUser().getState()).observe(this, authState -> {
-//            onUserAuthStateChanged(authState instanceof User.AuthState.LoggedIn);
-//        });
     }
 
     @Override
@@ -109,9 +106,7 @@ public class ZettlePlugin extends CordovaPlugin {
 
 
     private void initIZettleSDK(String clientId, String callbackUrl) {
-        final String testClientId = "26ae8eed-6ad1-4be4-a2f2-61b066877efa";
-        final String testCallBack = "kungfu-express://login.callback";
-        IZettleSDK.Instance.init(cordova.getActivity(), testClientId, testCallBack);
+        IZettleSDK.Instance.init(cordova.getActivity(), clientId, callbackUrl);
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new SdkLifecycle(IZettleSDK.Instance));
     }
 
