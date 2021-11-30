@@ -19,6 +19,24 @@
             </feature>
         </config-file>
 
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity
+                android:name="com.izettle.android.auth.OAuthActivity"
+                android:launchMode="singleTask"
+                android:taskAffinity=".auth">
+                <intent-filter>
+                    <data
+                        android:host="login.callback"
+                        android:scheme="kungfu-express" />
+
+                    <action android:name="android.intent.action.VIEW" />
+
+                    <category android:name="android.intent.category.DEFAULT" />
+                    <category android:name="android.intent.category.BROWSABLE" />
+                </intent-filter>
+            </activity>
+        </config-file>
+
         <framework src="src/android/plugin.gradle" custom="true" type="gradleReference"/>
 <!--        <framework src="com.izettle.payments:android-sdk-ui:1.14.17" />-->
 <!--        <framework src="androidx.appcompat:appcompat:1.1.0" />-->
