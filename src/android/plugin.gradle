@@ -21,20 +21,6 @@ android {
     packagingOptions {
         exclude 'META-INF/*.kotlin_module'
     }
-    signingConfigs {
-        debug {
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
-            storePassword 'android'
-            storeFile file('../../../keystore/debug.keystore')
-        }
-        release {
-            keyAlias 'kf'
-            keyPassword '123456'
-            storePassword '123456'
-            storeFile file('../../../keystore/kf.jks')
-        }
-    }
 }
 
 dependencies {
