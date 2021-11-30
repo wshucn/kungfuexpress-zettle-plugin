@@ -26,6 +26,8 @@ import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.math.BigDecimal;
+
 public class iZettle extends CordovaPlugin {
 
 //    private static final String githubAccessToken = "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";
@@ -70,7 +72,7 @@ public class iZettle extends CordovaPlugin {
                 return true;
             case FUNCTION_CHARGE:
                 try {
-                    long amount = args.getLong(0);
+                    double amount = args.getDouble(0);
                     String refId = args.getString(1);
                     this.charge(amount, refId);
                 } catch (Exception ex) {
@@ -79,7 +81,7 @@ public class iZettle extends CordovaPlugin {
                 return true;
             case FUNCTION_REFUND:
                 try {
-                    long amount = args.getLong(0);
+                    double amount = args.getDouble(0);
                     String refId = args.getString(1);
                     String refundRefId = args.getString(2);
                     this.refund(amount, refId, refundRefId);
@@ -121,12 +123,12 @@ public class iZettle extends CordovaPlugin {
         boolean enableTipping = false;
         boolean enableInstallments = false;
         boolean enableLogin = true;
-
+        long amountL = BigDecimal.valueOf(amount * 100).longValue();
         TransactionReference reference = new TransactionReference.Builder(referenceId)
                 .put("PAYMENT_EXTRA_INFO", "Started from home screen")
                 .build();
         Intent intent = new CardPaymentActivity.IntentBuilder(cordova.getActivity())
-                .amount(1L)
+                .amount(amountL)
                 .reference(reference)
                 .enableTipping(enableTipping) // Only for markets with tipping support
                 .enableInstalments(enableInstallments) // Only for markets with installments support
@@ -151,11 +153,12 @@ public class iZettle extends CordovaPlugin {
 
             @Override
             public void onSuccess(CardPaymentPayload payload) {
+                long amountL = BigDecimal.valueOf(amount * 100).longValue();
                 TransactionReference reference = new TransactionReference.Builder(refundRefId)
                         .put("REFUND_EXTRA_INFO", "Started from home screen")
                         .build();
                 Intent intent = new RefundsActivity.IntentBuilder(cordova.getActivity())
-                        .refundAmount(1L)
+                        .refundAmount(amountL)
                         .reference(reference)
                         .build();
                 cordova.setActivityResultCallback(iZettle.this);
