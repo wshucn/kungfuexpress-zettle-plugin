@@ -67,7 +67,7 @@ public class iZettle extends CordovaPlugin {
                     this.initIZettleSDK(clientId, callbackUrl);
                     callbackContext.success();
                 } catch (Exception ex) {
-                    callbackContext.error(ex.getClass().getName());
+                    callbackContext.error(Log.getStackTraceString(ex));
                 }
                 return true;
             case FUNCTION_CHARGE:
@@ -76,7 +76,7 @@ public class iZettle extends CordovaPlugin {
                     String refId = args.getString(1);
                     this.charge(amount, refId);
                 } catch (Exception ex) {
-                    callbackContext.error(ex.getClass().getName());
+                    callbackContext.error(Log.getStackTraceString(ex));
                 }
                 return true;
             case FUNCTION_REFUND:
@@ -86,21 +86,21 @@ public class iZettle extends CordovaPlugin {
                     String refundRefId = args.getString(2);
                     this.refund(amount, refId, refundRefId);
                 } catch (Exception ex) {
-                    callbackContext.error(ex.getClass().getName());
+                    callbackContext.error(Log.getStackTraceString(ex));
                 }
                 return true;
             case FUNCTION_PRESENT_SETTING:
                 try {
                     this.presentSetting();
                 } catch (Exception ex) {
-                    callbackContext.error(ex.getClass().getName());
+                    callbackContext.error(Log.getStackTraceString(ex));
                 }
                 return true;
             case FUNCTION_LOGOUT:
                 try {
                     this.logout();
                 } catch (Exception ex) {
-                    callbackContext.error(ex.getClass().getName());
+                    callbackContext.error(Log.getStackTraceString(ex));
                 }
                 return true;
             default:
