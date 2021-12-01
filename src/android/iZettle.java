@@ -46,7 +46,6 @@ public class iZettle extends CordovaPlugin {
     private static int REQUEST_CODE_PAYMENT = 1001;
     private static int REQUEST_CODE_REFUND = 1002;
 
-    private MutableLiveData<String> lastPaymentTraceId;
     private CallbackContext callbackContext;
 
 
@@ -136,7 +135,6 @@ public class iZettle extends CordovaPlugin {
                 .build();
         cordova.setActivityResultCallback(iZettle.this);
         cordova.getActivity().startActivityForResult(intent, REQUEST_CODE_PAYMENT);
-        lastPaymentTraceId.setValue(referenceId);
     }
 
     public void refund(double amount, String refId, String refundRefId) {
