@@ -15,7 +15,8 @@
   "cordova": {
     "id": "cordova-plugin-izettle",
     "platforms": [
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }

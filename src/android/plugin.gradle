@@ -1,0 +1,34 @@
+
+allprojects {
+    repositories {
+        maven {
+            url = uri("https://maven.pkg.github.com/iZettle/sdk-android")
+            credentials(HttpHeaderCredentials) {
+                name "Authorization"
+                value "Bearer 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"
+            }
+            authentication {
+                header(HttpHeaderAuthentication)
+            }
+        }
+
+        google()
+        jcenter()
+    }
+}
+
+android {
+    packagingOptions {
+        exclude 'META-INF/*.kotlin_module'
+    }
+}
+
+dependencies {
+    implementation 'com.izettle.payments:android-sdk-ui:1.14.17'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.3.0-alpha01'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.lifecycle:lifecycle-process:2.2.0'
+}

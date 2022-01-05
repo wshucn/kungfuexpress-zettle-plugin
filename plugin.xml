@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="cordova-plugin-izettle"
         version="1.0.0"
+        xmlns:tools="http://schemas.android.com/tools"
         xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android">
     <name>iZettle</name>
@@ -11,6 +12,44 @@
     </js-module>
 
     <!-- Android -->
+    <platform name="android">
+        <config-file parent="/*" target="config.xml">
+            <feature name="iZettle" >
+                <param name="android-package" value="com.kungfuexpress.restaurant.user.iZettle"/>
+                <param name="onload" value="true"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity
+                android:name="com.izettle.android.auth.OAuthActivity"
+                android:launchMode="singleTask"
+                android:taskAffinity="@null"
+                tools:replace="android:taskAffinity">
+                <intent-filter>
+                    <data
+                        android:host="login.callback"
+                        android:scheme="kungfu-express" />
+
+                    <action android:name="android.intent.action.VIEW" />
+
+                    <category android:name="android.intent.category.DEFAULT" />
+                    <category android:name="android.intent.category.BROWSABLE" />
+                </intent-filter>
+            </activity>
+        </config-file>
+
+        <framework src="src/android/plugin.gradle" custom="true" type="gradleReference"/>
+<!--        <framework src="com.izettle.payments:android-sdk-ui:1.14.17" />-->
+<!--        <framework src="androidx.appcompat:appcompat:1.1.0" />-->
+<!--        <framework src="androidx.swiperefreshlayout:swiperefreshlayout:1.0.0" />-->
+<!--        <framework src="androidx.constraintlayout:constraintlayout:1.1.3" />-->
+<!--        <framework src="com.google.android.material:material:1.3.0-alpha01" />-->
+<!--        <framework src="androidx.multidex:multidex:2.0.1" />-->
+<!--        <framework src="androidx.lifecycle:lifecycle-process:2.2.0" />-->
+
+        <source-file src="src/android/iZettle.java" target-dir="src/com/kungfuexpress/restaurant/user" />
+    </platform>
     <!-- Android goes here -->
 
     <!-- iOS -->
