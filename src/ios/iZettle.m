@@ -58,14 +58,18 @@
 - (void)charge:(CDVInvokedUrlCommand*)command
 {
     double amount = [command.arguments[0] doubleValue];
-    NSString* reference = command.arguments[1];
     NSDecimalNumber* decimalAmount = [[NSDecimalNumber alloc] initWithDouble:amount];
+
+    NSString* reference = command.arguments[1];
+    if ([reference isKindOfClass:[NSNull class]]) {
+        reference = nil;
+    }
 
     [[iZettleSDK shared] chargeAmount:decimalAmount enableTipping:NO reference:reference presentFromViewController:self.viewController completion:^(iZettleSDKPaymentInfo * _Nullable paymentInfo, NSError * _Nullable error) {
 
         CDVPluginResult* pluginResult;
         if(paymentInfo != nil) {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:paymentInfo.dictionary];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:paymentInfo.dictionary];
         } else {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.localizedDescription];
         }
@@ -85,7 +89,7 @@
 
         CDVPluginResult* pluginResult;
         if(paymentInfo != nil) {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:paymentInfo.dictionary];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:paymentInfo.dictionary];
         } else {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.localizedDescription];
         }
@@ -100,7 +104,7 @@
 
         CDVPluginResult* pluginResult;
         if(paymentInfo != nil) {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:paymentInfo.dictionary];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:paymentInfo.dictionary];
         } else {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.localizedDescription];
         }
