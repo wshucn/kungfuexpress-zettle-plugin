@@ -71,7 +71,7 @@ public class iZettle extends CordovaPlugin {
                 return true;
             case FUNCTION_CHARGE:
                 try {
-                    double amount = args.getDouble(0);
+                    double amount = Double.parseDouble(args.getString(0));
                     String refId = args.getString(1);
                     this.charge(amount, refId);
                 } catch (Exception ex) {
@@ -80,7 +80,7 @@ public class iZettle extends CordovaPlugin {
                 return true;
             case FUNCTION_REFUND:
                 try {
-                    double amount = args.getDouble(0);
+                    double amount = Double.parseDouble(args.getString(0));
                     String refId = args.getString(1);
                     String refundRefId = args.getString(2);
                     this.refund(amount, refId, refundRefId);
