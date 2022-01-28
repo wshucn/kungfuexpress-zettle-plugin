@@ -12,6 +12,8 @@
 @import iZettleSDK;
 #import <iZettleSDK/iZettleSDK.h>
 
+#define iZettleHasInitializedKey @"iZettleHasInitializedKey"
+
 @interface iZettle()
 
 @end
@@ -20,7 +22,7 @@
 
 - (void)dealloc
 {
-    
+
 }
 
 /*
@@ -32,11 +34,18 @@
 
 - (void)onAppTerminate
 {
-   
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:iZettleHasInitializedKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)initialize:(CDVInvokedUrlCommand*)command
 {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    BOOL hasInitialized = [userDefaults boolForKey:iZettleHasInitializedKey];
+    if (hasInitialized) {
+        return;
+    }
+
     NSString* clientId = command.arguments[0];
     NSString* callbackURL = command.arguments[1];
     NSError* error;
@@ -50,6 +59,8 @@
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.localizedDescription];
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+        [userDefaults setBool:YES forKey:iZettleHasInitializedKey];
+        [userDefaults synchronize];
     }
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
