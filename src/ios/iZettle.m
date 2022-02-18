@@ -69,7 +69,8 @@
 - (void)charge:(CDVInvokedUrlCommand*)command
 {
     double amount = [command.arguments[0] doubleValue];
-    NSDecimalNumber* decimalAmount = [[NSDecimalNumber alloc] initWithDouble:amount];
+    double roundedAmount = round(amount * 100) / 100;
+    NSDecimalNumber* decimalAmount = [[NSDecimalNumber alloc] initWithDouble:roundedAmount];
 
     NSString* reference = command.arguments[1];
     if ([reference isKindOfClass:[NSNull class]]) {
