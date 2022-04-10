@@ -104,7 +104,7 @@
                 <source url="https://github.com/CocoaPods/Specs.git"/>
             </config>
             <pods>
-                <pod name="iZettleSDK" spec="~> 3.3"/>
+                <pod name="iZettleSDK" spec="~> 3.4.0"/>
             </pods>
         </podspec>
 
